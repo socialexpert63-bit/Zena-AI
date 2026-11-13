@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zena AI – WhatsApp Business Operations Console (Concept)</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f4f6f8;--surf:#fff;--surf2:#eef1f4;--tx:#0e1b2c;--mut:#64748b;--bd:#e2e8f0;--nav:#0b1a2e;--navtx:#cbd5e1;--g:#10b981;--g2:#059669;--gs:#d1fae5;--bub-in:#fff;--bub-out:#d9fdd3;--warn:#f59e0b}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a121d;--surf:#111c2b;--surf2:#17263a;--tx:#e8eef6;--mut:#8fa1b8;--bd:#223349;--gs:#0d3b2e;--bub-in:#17263a;--bub-out:#0f4a38}}
+:root[data-theme="dark"]{--bg:#0a121d;--surf:#111c2b;--surf2:#17263a;--tx:#e8eef6;--mut:#8fa1b8;--bd:#223349;--gs:#0d3b2e;--bub-in:#17263a;--bub-out:#0f4a38}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*{box-sizing:border-box}
+body{margin:0;height:100%;background:var(--bg);color:var(--tx);font:14px/1.45 "DM Sans",Inter,system-ui,sans-serif;display:flex}
+button,select,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+aside{width:232px;background:radial-gradient(120% 60% at 0% 0%,#0f4a3a 0,transparent 55%),var(--nav);color:var(--navtx);display:flex;flex-direction:column;padding:14px 10px;transition:width .25s;flex-shrink:0;overflow:hidden}
+aside.c{width:62px}
+.logo{display:flex;align-items:center;gap:10px;color:#fff;font-weight:700;font-size:17px;padding:4px 8px 16px;white-space:nowrap}
+.logo i{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#34d399,#059669);display:grid;place-items:center;font-style:normal;flex-shrink:0}
+aside button.nav{display:flex;align-items:center;gap:12px;width:100%;background:none;border:0;color:inherit;padding:9px 11px;border-radius:9px;text-align:left;white-space:nowrap;transition:.15s}
+aside button.nav:hover{background:#ffffff14}
+aside button.nav.on{background:#10b98133;color:#fff}
+aside button.nav .n{width:20px;text-align:center;flex-shrink:0}
+aside small{display:block;padding:12px 11px 4px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;opacity:.5;white-space:nowrap}
+aside.c small,aside.c .lbl,aside.c .logo span{display:none}
+main{flex:1;min-width:0;display:flex;flex-direction:column;height:100%}
+header{display:flex;align-items:center;gap:10px;padding:12px 20px;border-bottom:1px solid var(--bd);background:color-mix(in srgb,var(--surf) 85%,transparent);backdrop-filter:blur(10px)}
+header h1{font-size:16px;margin:0;flex:1}
+.btn{border:1px solid var(--bd);background:var(--surf);border-radius:9px;padding:7px 12px;transition:.15s}
+.btn:hover{border-color:var(--g)}
+.btn.p{background:linear-gradient(135deg,#10b981,#059669);border-color:transparent;color:#fff;box-shadow:0 4px 12px #05966955}.btn.p:hover{filter:brightness(1.08)}
+.demo{background:var(--gs);color:var(--g2);font-size:11px;padding:3px 9px;border-radius:99px;font-weight:600}
+#view{flex:1;overflow:auto;padding:20px;animation:fade .3s}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.grid{display:grid;gap:14px}
+.k6{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.card{background:var(--surf);border:1px solid var(--bd);border-radius:18px;padding:18px;transition:.25s;animation:fade .5s both;box-shadow:0 1px 2px #0b1a2e0d}.card:hover{border-color:#10b98166}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 24px #0001}
+.kpi .v{font-size:30px;font-weight:700;margin:6px 0;letter-spacing:-.03em}.kpi{position:relative;overflow:hidden}.kpi:before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,#34d399,#059669)}
+.kpi .t{color:var(--mut);font-size:12px}
+.up{color:var(--g2);font-size:12px;font-weight:600}
+h2{font-size:15px;margin:0 0 12px}
+.two{grid-template-columns:2fr 1fr}
+.bars{display:flex;align-items:flex-end;gap:8px;height:150px}
+.bars div{flex:1;background:linear-gradient(var(--g),var(--g2));border-radius:6px 6px 0 0;transform-origin:bottom;animation:grow .8s both;position:relative}
+.bars div span{position:absolute;bottom:-18px;left:0;right:0;text-align:center;font-size:10px;color:var(--mut)}
+@keyframes grow{from{transform:scaleY(0)}}
+.split{height:12px;border-radius:99px;overflow:hidden;display:flex;background:var(--surf2)}
+.split i{display:block;transition:width 1s}
+.feed div{padding:8px 0;border-bottom:1px solid var(--bd);display:flex;gap:10px;animation:fade .4s both}
+.brief{background:radial-gradient(90% 90% at 100% 0%,#10b98155,transparent 60%),linear-gradient(135deg,var(--nav),#0f3d33);color:#e8f5ef;border:0}
+.brief li{margin:6px 0}
+.inbox{display:grid;grid-template-columns:290px 1fr 300px;height:100%;gap:0;margin:-20px;min-height:0}
+.inbox>div{min-height:0;overflow:auto;background:var(--surf)}
+.list{border-right:1px solid var(--bd)}
+.conv{display:flex;gap:10px;padding:12px 14px;border-bottom:1px solid var(--bd);cursor:pointer;transition:.15s}
+.conv:hover,.conv.on{background:var(--surf2)}
+.av{width:36px;height:36px;border-radius:50%;background:var(--gs);color:var(--g2);display:grid;place-items:center;font-weight:700;flex-shrink:0}
+.conv b{display:block}.conv p{margin:0;color:var(--mut);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:170px}
+.badge{background:var(--g);color:#fff;border-radius:99px;font-size:11px;padding:1px 7px;animation:pop 1.6s infinite}
+@keyframes pop{50%{transform:translateY(-2px)}}
+.chat{display:flex;flex-direction:column;background:var(--bg)!important}
+.msgs{flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:8px}
+.m{max-width:72%;padding:9px 13px;border-radius:16px 16px 16px 4px;background:var(--bub-in);box-shadow:0 1px 2px #0002;animation:fade .3s both}
+.m.out{border-radius:16px 16px 4px 16px;align-self:flex-end;background:var(--bub-out)}
+.m small{display:block;color:var(--mut);font-size:10px;text-align:right;margin-top:2px}
+.m.ai{border:1px dashed var(--g)}
+.lang{font-size:11px;background:var(--surf2);padding:2px 8px;border-radius:99px;color:var(--mut)}
+.typing{display:inline-flex;gap:4px}.typing i{width:6px;height:6px;border-radius:50%;background:var(--mut);animation:b 1s infinite}.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes b{50%{transform:translateY(-4px)}}
+.comp{display:flex;gap:8px;padding:10px;border-top:1px solid var(--bd);background:var(--surf)}
+.comp input{flex:1;border:1px solid var(--bd);border-radius:9px;padding:8px 12px;background:var(--bg)}
+.sug{padding:8px 12px;background:var(--gs);color:var(--tx);border-top:1px solid var(--bd);display:flex;gap:8px;align-items:center}
+.side{border-left:1px solid var(--bd);padding:16px}
+.side label{display:block;font-size:11px;color:var(--mut);margin:12px 0 3px;text-transform:uppercase;letter-spacing:.05em}
+.side select,.side textarea,.side .f{width:100%;border:1px solid var(--bd);border-radius:8px;padding:7px 9px;background:var(--bg)}
+.f.hl{border-color:var(--g);background:var(--gs);animation:fade .5s}
+.tag{display:inline-block;background:var(--surf2);padding:2px 9px;border-radius:99px;font-size:12px;margin:2px}
+#toast{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));background:var(--nav);color:#fff;padding:10px 16px;border-radius:10px;opacity:0;transform:translateY(10px);transition:.3s;pointer-events:none;z-index:9}
+#toast.s{opacity:1;transform:none}
+.fbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.fcv{position:relative;height:420px;overflow:auto;background:var(--surf);border:1px solid var(--bd);border-radius:16px;background-image:radial-gradient(var(--bd) 1px,transparent 1px);background-size:20px 20px}
+.nd{position:absolute;width:150px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:12px;font-weight:600;color:#fff;cursor:grab;user-select:none;touch-action:none;box-shadow:0 4px 14px #0003;transition:box-shadow .3s,transform .2s;padding:0 8px}
+.nd.sel{outline:2px solid var(--tx);outline-offset:2px}.nd.act{box-shadow:0 0 0 4px #34d39988,0 0 28px #10b981;transform:scale(1.06)}
+.k-tr{background:#059669}.k-ai{background:#6366f1}.k-co{background:#d97706}.k-ac{background:#0d9488}.k-hu{background:#e11d48}.k-ot{background:#475569}
+.ed{fill:none;stroke:var(--mut);stroke-width:2;stroke-dasharray:6 5;animation:dsh 1s linear infinite}@keyframes dsh{to{stroke-dashoffset:-11}}
+.kb{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(210px,1fr);gap:12px;overflow:auto;padding-bottom:8px}
+.col{background:var(--surf2);border-radius:14px;padding:10px;min-height:280px}.col h3{font-size:13px;margin:0 0 8px;display:flex;justify-content:space-between}.col.ov{outline:2px dashed var(--g)}
+.lc{background:var(--surf);border:1px solid var(--bd);border-radius:12px;padding:10px;margin-bottom:8px;cursor:grab;animation:fade .3s both}.lc small{color:var(--mut);display:block}
+.lc select{margin-top:6px;width:100%;font-size:12px;background:var(--bg);border:1px solid var(--bd);border-radius:6px}
+.tabs{display:none}#start{position:fixed;inset:0;z-index:20;display:grid;place-items:center;text-align:center;padding:calc(24px + env(safe-area-inset-top,0px)) 24px calc(24px + env(safe-area-inset-bottom,0px));background:radial-gradient(60% 50% at 80% 10%,#10b9814d,transparent 60%),radial-gradient(50% 50% at 10% 90%,#05966933,transparent 60%),#08111c;color:#e8eef6;transition:opacity .5s,transform .5s;overflow:hidden}#start.out{opacity:0;transform:scale(1.04);pointer-events:none}#start h1{font-size:clamp(30px,5vw,52px);letter-spacing:-.035em;line-height:1.1;margin:18px 0 10px}#start h1 em{font-style:normal;background:linear-gradient(90deg,#34d399,#10b981);-webkit-background-clip:text;background-clip:text;color:transparent}#start p{color:#9fb0c4;max-width:460px;margin:0 auto 26px;font-size:16px}#start .lg{width:64px;height:64px;border-radius:18px;background:linear-gradient(135deg,#34d399,#059669);display:grid;place-items:center;font-size:30px;font-weight:800;color:#fff;margin:0 auto;box-shadow:0 12px 40px #10b98166;animation:pulse 2.4s infinite}@keyframes pulse{50%{box-shadow:0 12px 60px #10b981aa}}#start .bb{position:absolute;padding:8px 14px;border-radius:14px;background:#17263a;font-size:13px;opacity:.7;animation:fl 7s ease-in-out infinite}#start .bb.o{background:#0f4a38}@keyframes fl{50%{transform:translateY(-14px)}}#start .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}#start .btn{background:#17263a;border-color:#223349;color:#e8eef6;padding:12px 22px}#start .btn.p{color:#fff}#start small{display:block;margin-top:22px;color:#6f8299;font-size:12px}
+@media(max-width:860px){aside{display:none}.inbox{grid-template-columns:1fr;margin:-20px;height:auto}.side,.list{border:0;max-height:260px}.chat{height:70vh}.two{grid-template-columns:1fr}}
+</style></head>
+<body>
+<aside id="sb"></aside>
+<main>
+<header><button class="btn" id="col" aria-label="Collapse sidebar">☰</button><h1 id="ttl">Overview</h1><span class="demo">Illustrative demo data</span><button class="btn" id="th">◐ Theme</button><button class="btn p" id="pres">▶ Walkthrough</button></header>
+<div id="view"></div>
+</main>
+<div id="toast"></div>
+<div id="start"><span class="bb" style="top:14%;left:8%" dir="auto">مرحبا، هل لديكم توصيل اليوم؟</span><span class="bb o" style="top:24%;right:9%;animation-delay:1s">Yes, we deliver today ✓</span><span class="bb" style="bottom:20%;left:12%;animation-delay:2s" dir="auto">کیا آپ آج ڈیلیوری کرتے ہیں؟</span><span class="bb o" style="bottom:14%;right:12%;animation-delay:3s">Lead captured · AED 2M</span><div style="position:relative"><div class="lg">Z</div><h1>Zena AI<br><em>WhatsApp Business Operations Console</em></h1><p>A product experience concept: multilingual AI, shared inbox, lead capture and live analytics in one workspace.</p><div class="row"><button class="btn p" id="go1">Enter the console</button><button class="btn" id="go2">▶ Guided walkthrough</button></div><small>Interactive concept with illustrative demo data. Not a live Zena product.</small></div></div>
+<script>
+const $=s=>document.querySelector(s);
+const NAV=[["dash","▦","Overview"],["inbox","✉","Team Inbox"],["ai","✦","AI Assistant"],["flow","⛓","Chatflow Builder"],["crm","☺","CRM & Leads"],["bc","➤","Broadcasts"],["an","▤","Analytics"],["kb","❏","Knowledge Base"],["int","⚙","Integrations"]];
+let page="dash",cur=0,theme=null;
+const AGENTS=["Unassigned","Sarah","Omar","Layla"];
+const CONVS=[
+{n:"Fatima Al-Mansoori",l:"Arabic",u:2,a:"Unassigned",s:"Open",ai:true,msgs:[["in","مرحبا، هل لديكم توصيل اليوم؟","09:41"],["out","مرحباً بك! نعم، نوفر التوصيل اليوم. هل تودين الطلب إلى أي منطقة؟","09:41","ai"],["in","دبي مارينا. وأبحث أيضاً عن شقة بغرفتين في الخليج التجاري، ميزانيتي ٢ مليون درهم، ويناسبني الخميس للمعاينة","09:43"]],sug:"يسعدنا خدمتك! لدينا شقق بغرفتين في الخليج التجاري ضمن ميزانيتك. هل يناسبك موعد المعاينة يوم الخميس الساعة 4 مساءً؟",lead:{Location:"Business Bay",Type:"2-bedroom apartment",Budget:"AED 2,000,000",Viewing:"Thursday"}},
+{n:"James Carter",l:"English",u:0,a:"Sarah",s:"Open",ai:true,msgs:[["in","Hi, do you deliver to Dubai Marina?","09:12"],["out","Yes, we deliver to Dubai Marina daily between 10am and 9pm.","09:12","ai"]],sug:"Delivery to Dubai Marina is free above AED 150. Would you like to place an order?",lead:{Location:"Dubai Marina",Type:"Delivery enquiry",Budget:"Not stated",Viewing:"n/a"}},
+{n:"Imran Qureshi",l:"Urdu",u:1,a:"Omar",s:"Waiting",ai:false,msgs:[["in","کیا آپ آج ڈیلیوری کرتے ہیں؟","08:55"]],sug:"جی ہاں، ہم آج ڈیلیوری کرتے ہیں۔ آپ کس علاقے میں ہیں؟",lead:{Location:"Not stated",Type:"Delivery enquiry",Budget:"Not stated",Viewing:"n/a"}},
+{n:"Ana Reyes",l:"Tagalog",u:0,a:"Layla",s:"Resolved",ai:true,msgs:[["in","Magkano po ang delivery sa Marina?","Yesterday"],["out","Libre po ang delivery para sa orders na higit sa AED 150.","Yesterday","ai"]],sug:"Salamat po! Mayroon pa po bang maitutulong ako?",lead:{Location:"Marina",Type:"Pricing enquiry",Budget:"Not stated",Viewing:"n/a"}}];
+function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("s");setTimeout(()=>e.classList.remove("s"),2200)}
+function side(){$("#sb").innerHTML=`<div class="logo"><i>Z</i><span>Zena AI</span></div>`+NAV.map(([k,i,t],x)=>(x==2?"<small>Modules</small>":"")+`<button class="nav ${k==page?"on":""}" data-k="${k}"><span class="n">${i}</span><span class="lbl">${t}</span></button>`).join("");
+document.querySelectorAll("aside .nav").forEach(b=>b.onclick=()=>go(b.dataset.k))}
+function go(k){if(!["dash","inbox","flow","crm"].includes(k)){toast(NAV.find(n=>n[0]==k)[2]+" ships in the next build round");return}page=k;side();$("#ttl").textContent=NAV.find(n=>n[0]==k)[2];render()}
+function count(el,to,dec,suf){let s=performance.now();(function f(t){let p=Math.min(1,(t-s)/1000);el.textContent=(to*p).toLocaleString(undefined,{maximumFractionDigits:dec,minimumFractionDigits:dec})+suf;if(p<1)requestAnimationFrame(f)})(s)}
+function spark(d){const w=90,h=26,m=Math.max(...d);return `<svg width="${w}" height="${h}"><polyline fill="none" stroke="#10b981" stroke-width="2" points="${d.map((v,i)=>(i*w/(d.length-1))+","+(h-v/m*(h-3)))}" stroke-dasharray="200" stroke-dashoffset="200"><animate attributeName="stroke-dashoffset" to="0" dur="1.2s" fill="freeze"/></polyline></svg>`}
+function dash(){const K=[["Total Conversations",1284,0,"","+12.4%","💬",[3,5,4,7,6,9,10]],["Open Conversations",86,0,"","−4.1%","📂",[9,8,8,7,6,6,5]],["AI-Handled",72,0,"%","+5.2%","✦",[4,5,6,6,7,8,9]],["New Leads Captured",147,0,"","+18.9%","🎯",[2,3,5,4,7,8,10]],["Avg First Response",42,0,"s","−9s faster","⚡",[9,8,7,7,5,5,4]],["Broadcast Delivery",96.4,1,"%","+0.8%","➤",[8,8,9,9,9,10,10]]];
+const days=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],vals=[62,78,70,92,100,58,66];
+$("#view").innerHTML=`<h2 style="font-size:22px;margin-bottom:2px">Good morning, Abdullah</h2><p style="color:var(--mut);margin:0 0 16px">Here’s what’s happening across your WhatsApp business today.</p>
+<div class="grid k6">${K.map((k,i)=>`<div class="card kpi" style="animation-delay:${i*70}ms"><div class="t">${k[5]} ${k[0]}</div><div class="v" data-v="${k[1]}" data-d="${k[2]}" data-s="${k[3]}">0</div><div style="display:flex;justify-content:space-between;align-items:center"><span class="up">${k[4]}</span>${spark(k[6])}</div></div>`).join("")}</div>
+<div class="grid two" style="margin-top:14px"><div class="card"><h2>Conversations this week</h2><div class="bars">${vals.map((v,i)=>`<div style="height:${v}%;animation-delay:${i*90}ms" title="${v}%"><span>${days[i]}</span></div>`).join("")}</div><div style="height:20px"></div></div>
+<div class="card brief"><h2>Your Business Intelligence Briefing</h2><ul style="padding-left:18px;margin:0"><li>Customer enquiries increased this period.</li><li>Several high-intent leads await human follow-up.</li><li>Arabic is a significant share of incoming messages.</li></ul><button class="btn p" style="margin-top:10px" id="vi">View insights</button></div></div>
+<div class="grid two" style="margin-top:14px"><div class="card"><h2>AI vs human handling</h2><div class="split"><i style="width:0;background:var(--g)" id="s1"></i></div><p style="color:var(--mut);font-size:12px">72% AI-handled · 28% human-handled</p><h2 style="margin-top:14px">Languages</h2>${[["Arabic",46],["English",34],["Urdu",12],["Hindi",5],["Tagalog",3]].map(l=>`<div style="display:flex;gap:8px;align-items:center;margin:5px 0"><span style="width:60px">${l[0]}</span><div class="split" style="flex:1;height:8px"><i style="width:${l[1]}%;background:var(--g)"></i></div><span>${l[1]}%</span></div>`).join("")}</div>
+<div class="card feed"><h2>Live activity</h2>${["New WhatsApp enquiry received","AI detected Arabic language","Customer qualified as potential lead","Conversation assigned to Sarah","Customer added to CRM","Booking enquiry handed over"].map((t,i)=>`<div style="animation-delay:${i*150}ms"><span class="up">●</span>${t}</div>`).join("")}</div></div>`;
+document.querySelectorAll(".kpi .v").forEach(e=>count(e,+e.dataset.v,+e.dataset.d,e.dataset.s));setTimeout(()=>$("#s1").style.width="72%",100);
+$("#vi").onclick=()=>{go("inbox");toast("Opened the high-intent Arabic lead")}}
+function inbox(){const c=CONVS[cur];
+$("#view").innerHTML=`<div class="inbox"><div class="list">${CONVS.map((v,i)=>`<div class="conv ${i==cur?"on":""}" data-i="${i}"><div class="av">${v.n[0]}</div><div style="flex:1;min-width:0"><b>${v.n}</b><p>${v.msgs[v.msgs.length-1][1]}</p><span class="lang">${v.l}</span> <span class="lang">${v.s}</span></div>${v.u?`<span class="badge">${v.u}</span>`:""}</div>`).join("")}</div>
+<div class="chat"><div style="padding:10px 14px;border-bottom:1px solid var(--bd);background:var(--surf);display:flex;gap:8px;align-items:center"><b>${c.n}</b><span class="lang" id="ld">🌐 Detected: ${c.l}</span><span style="flex:1"></span><label style="font-size:12px">AI handling <input type="checkbox" id="aitg" ${c.ai?"checked":""}></label></div>
+<div class="msgs" id="ms">${c.msgs.map(m=>bub(m)).join("")}</div><div class="sug" id="sg" style="display:none"></div>
+<div class="comp"><button class="btn" id="ais">✦ Suggest</button><input id="inp" placeholder="Type a reply…"><button class="btn p" id="snd">Send</button></div></div>
+<div class="side"><div style="display:flex;gap:10px;align-items:center"><div class="av">${c.n[0]}</div><div><b>${c.n}</b><br><span style="color:var(--mut)">+971 50 ••• ${1200+cur*37}</span></div></div>
+<label>Assigned agent</label><select id="ag">${AGENTS.map(a=>`<option ${a==c.a?"selected":""}>${a}</option>`).join("")}</select>
+<label>Status</label><select id="st">${["Open","Waiting","Resolved"].map(a=>`<option ${a==c.s?"selected":""}>${a}</option>`).join("")}</select>
+<label>Tags</label><div id="tg"><span class="tag">${c.l}</span><span class="tag">WhatsApp</span></div>
+<label>AI lead extraction</label><div id="lead">${Object.keys(c.lead).map(k=>`<div style="display:flex;justify-content:space-between;margin:4px 0"><span style="color:var(--mut)">${k}</span><span class="f" style="width:60%;padding:3px 8px">—</span></div>`).join("")}</div><button class="btn p" id="ex" style="margin-top:8px;width:100%">Extract lead to CRM</button>
+<label>Internal note</label><textarea id="nt" rows="2" placeholder="Visible to team only"></textarea><button class="btn" id="sn" style="margin-top:6px">Save note</button></div></div>`;
+const ms=$("#ms");ms.scrollTop=ms.scrollHeight;
+document.querySelectorAll(".conv").forEach(e=>e.onclick=()=>{cur=+e.dataset.i;CONVS[cur].u=0;inbox()});
+const send=(t,ai)=>{if(!t.trim())return;c.msgs.push(["out",t,"now",ai]);ms.insertAdjacentHTML("beforeend",bub(["out",t,"now",ai]));ms.scrollTop=ms.scrollHeight;$("#inp").value=""};
+$("#snd").onclick=()=>send($("#inp").value);$("#inp").onkeydown=e=>{if(e.key=="Enter")send($("#inp").value)};
+$("#ais").onclick=()=>{ms.insertAdjacentHTML("beforeend",`<div class="m ai" id="ty"><span class="typing"><i></i><i></i><i></i></span></div>`);ms.scrollTop=ms.scrollHeight;setTimeout(()=>{$("#ty")?.remove();const s=$("#sg");s.style.display="flex";s.innerHTML=`<span style="flex:1" dir="auto">✦ ${c.sug}</span><button class="btn p" id="use">Insert</button>`;$("#use").onclick=()=>{$("#inp").value=c.sug;s.style.display="none"}},1200)};
+$("#aitg").onchange=e=>{c.ai=e.target.checked;toast(c.ai?"AI is handling this chat (simulated)":"Handed over to a human agent")};
+$("#ag").onchange=e=>{c.a=e.target.value;toast("Assigned to "+c.a)};$("#st").onchange=e=>{c.s=e.target.value;toast("Status: "+c.s)};
+$("#sn").onclick=()=>{if($("#nt").value.trim()){toast("Internal note saved");$("#nt").value=""}};
+$("#ex").onclick=()=>{const f=document.querySelectorAll("#lead .f"),ks=Object.values(c.lead);f.forEach((e,i)=>setTimeout(()=>{e.textContent=ks[i];e.classList.add("hl")},i*350));setTimeout(()=>{$("#tg").insertAdjacentHTML("beforeend",`<span class="tag" style="background:var(--gs)">Lead · Qualified</span>`);toast("Lead added to CRM (simulated)")},1500)}}
+function bub(m){return `<div class="m ${m[0]=="out"?"out":""} ${m[3]?"ai":""}" dir="auto">${m[1]}<small>${m[3]?"✦ AI · ":""}${m[2]}</small></div>`}
+let FN=null,FE=null,sel=null;
+function flowInit(){FN=[{id:1,t:"Incoming Message",x:20,y:40,k:"tr"},{id:2,t:"Detect Language",x:220,y:40,k:"ai"},{id:3,t:"Detect Intent",x:420,y:40,k:"ai"},{id:4,t:"Knowledge Lookup",x:620,y:40,k:"ai"},{id:5,t:"AI Response",x:620,y:170,k:"ai"},{id:6,t:"Customer Satisfied?",x:420,y:170,k:"co"},{id:7,t:"Close Conversation",x:220,y:300,k:"ac"},{id:8,t:"Human Handover",x:420,y:300,k:"hu"}];FE=[[1,2],[2,3],[3,4],[4,5],[5,6],[6,7,"Yes"],[6,8,"No"]];sel=null}
+function fedges(){const g=$("#eg");if(!g)return;g.innerHTML=FE.map(([a,b,l])=>{const A=FN.find(n=>n.id==a),B=FN.find(n=>n.id==b);if(!A||!B)return"";let x1,y1,x2,y2,d;
+if(B.y>A.y+60){x1=A.x+75;y1=A.y+48;x2=B.x+75;y2=B.y;d=`M${x1} ${y1}C${x1} ${y1+50} ${x2} ${y2-50} ${x2} ${y2}`}
+else if(B.x>=A.x){x1=A.x+150;y1=A.y+24;x2=B.x;y2=B.y+24;d=`M${x1} ${y1}C${x1+50} ${y1} ${x2-50} ${y2} ${x2} ${y2}`}
+else{x1=A.x;y1=A.y+24;x2=B.x+150;y2=B.y+24;d=`M${x1} ${y1}C${x1-50} ${y1} ${x2+50} ${y2} ${x2} ${y2}`}
+return `<path class="ed" d="${d}"/>`+(l?`<text x="${(x1+x2)/2+8}" y="${(y1+y2)/2}" fill="currentColor" font-size="12" font-weight="700">${l}</text>`:"")}).join("")}
+function fdraw(){const cv=$("#cv");cv.innerHTML=`<svg width="900" height="420" style="position:absolute;inset:0;pointer-events:none"><g id="eg"></g></svg>`+FN.map(n=>`<div class="nd k-${n.k} ${sel==n.id?"sel":""}" data-id="${n.id}" style="left:${n.x}px;top:${n.y}px">${n.t}</div>`).join("");fedges();
+cv.querySelectorAll(".nd").forEach(el=>{el.onpointerdown=e=>{const n=FN.find(x=>x.id==el.dataset.id);sel=n.id;const ox=e.clientX-n.x,oy=e.clientY-n.y;el.setPointerCapture(e.pointerId);
+el.onpointermove=ev=>{n.x=Math.max(0,Math.min(750,ev.clientX-ox));n.y=Math.max(0,Math.min(370,ev.clientY-oy));el.style.left=n.x+"px";el.style.top=n.y+"px";fedges()};
+el.onpointerup=()=>{el.onpointermove=null;fdraw();fcfg()}}})}
+function fcfg(){const n=FN.find(x=>x.id==sel);const c=$("#cf");
+if(!n){c.textContent="Select a node to edit its settings, or drag nodes to rearrange.";return}
+c.innerHTML=`<b>Node settings</b><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><input id="nl" class="btn" value="${n.t}" style="min-width:200px"><select id="nc" class="btn">${FN.filter(x=>x.id!=n.id).map(x=>`<option value="${x.id}">${x.t}</option>`).join("")}</select><button class="btn" id="cn">Connect to →</button><button class="btn" id="dn">Delete node</button></div>`;
+$("#nl").oninput=e=>{n.t=e.target.value;const el=document.querySelector(`.nd[data-id="${n.id}"]`);if(el)el.textContent=n.t};
+$("#cn").onclick=()=>{const t=+$("#nc").value;if(t&&!FE.some(e=>e[0]==n.id&&e[1]==t)){FE.push([n.id,t]);fedges();toast("Nodes connected")}};
+$("#dn").onclick=()=>{FN=FN.filter(x=>x.id!=n.id);FE=FE.filter(e=>e[0]!=n.id&&e[1]!=n.id);sel=null;fdraw();fcfg()}}
+function frun(){const ok=$("#oc").selectedIndex==0,p=[1,2,3,4,5,6,ok?7:8];
+p.forEach((id,i)=>setTimeout(()=>{document.querySelectorAll(".nd").forEach(e=>e.classList.remove("act"));const e=document.querySelector(`.nd[data-id="${id}"]`);if(e)e.classList.add("act");
+if(i==p.length-1){toast(ok?"Test complete: conversation closed (simulated)":"Test complete: handed to Sarah with full context (simulated)");setTimeout(()=>e&&e.classList.remove("act"),1600)}},i*650))}
+function flow(){if(!FN)flowInit();
+$("#view").innerHTML=`<div class="fbar"><b style="font-size:16px">Support Automation</b><span class="lang">Draft</span><span style="flex:1"></span><select id="nt2" class="btn">${["Send WhatsApp Message","Time Delay","Webhook","Update CRM Contact","Assign Agent","Condition"].map(x=>`<option>${x}</option>`).join("")}</select><button class="btn" id="an">+ Add node</button><select id="oc" class="btn"><option>Customer satisfied</option><option>Not satisfied</option></select><button class="btn p" id="rn">▶ Test workflow</button><button class="btn" id="rs">Reset</button><button class="btn" id="pb">Publish</button></div><div class="fcv" id="cv"></div><div class="card" id="cf" style="margin-top:12px"></div>`;
+fdraw();fcfg();$("#rn").onclick=frun;$("#rs").onclick=()=>{flowInit();flow();toast("Workflow reset")};$("#pb").onclick=()=>toast("Published (simulated, nothing is sent to WhatsApp)");
+$("#an").onclick=()=>{const t=$("#nt2").value,id=Math.max(0,...FN.map(n=>n.id))+1;FN.push({id,t,x:40+(id%5)*30,y:340,k:t=="Condition"?"co":t=="Assign Agent"?"hu":"ot"});sel=id;fdraw();fcfg();toast("Node added: drag it into place")}}
+let LD=null,cq="";const ST=["New enquiry","Contacted","Qualified","Interested","Converted","Not interested"];
+function crm(){if(!LD)LD=[{n:"Fatima Al-Mansoori",i:"2BR Business Bay",b:"AED 2M",s:2},{n:"James Carter",i:"Marina delivery",b:"—",s:0},{n:"Imran Qureshi",i:"Same-day delivery",b:"—",s:1},{n:"Ana Reyes",i:"Bulk order",b:"AED 4k",s:4},{n:"Khalid Al-Rashid",i:"Villa viewing",b:"AED 5M",s:3},{n:"Priya Nair",i:"Catering package",b:"AED 12k",s:1},{n:"Omar Haddad",i:"Studio rental",b:"AED 90k",s:0}];
+const vis=LD.filter(l=>(l.n+l.i).toLowerCase().includes(cq.toLowerCase()));
+$("#view").innerHTML=`<div class="grid k6" style="margin-bottom:14px">${[["Total leads",LD.length],["Qualified",LD.filter(l=>l.s==2).length],["Interested",LD.filter(l=>l.s==3).length],["Converted",LD.filter(l=>l.s==4).length]].map(k=>`<div class="card kpi"><div class="t">${k[0]}</div><div class="v">${k[1]}</div></div>`).join("")}</div>
+<div class="fbar"><input id="cs" class="btn" placeholder="Search leads…" value="${cq}" style="min-width:200px"><span style="flex:1"></span><input id="nn" class="btn" placeholder="New lead name"><button class="btn p" id="na">+ Add lead</button></div>
+<div class="kb">${ST.map((s,i)=>`<div class="col" data-s="${i}"><h3>${s}<span class="lang">${vis.filter(l=>l.s==i).length}</span></h3>${vis.filter(l=>l.s==i).map(l=>`<div class="lc" draggable="true" data-i="${LD.indexOf(l)}"><b>${l.n}</b><small>${l.i} · ${l.b}</small><select>${ST.map((t,j)=>`<option value="${j}" ${j==i?"selected":""}>${t}</option>`).join("")}</select></div>`).join("")}</div>`).join("")}</div>`;
+$("#cs").oninput=e=>{cq=e.target.value;crm();const t=$("#cs");t.focus();t.setSelectionRange(cq.length,cq.length)};
+$("#na").onclick=()=>{const v=$("#nn").value.trim();if(!v)return toast("Enter a name first");LD.push({n:v,i:"New enquiry",b:"—",s:0});crm();toast("Lead added")};
+document.querySelectorAll(".lc").forEach(el=>{el.ondragstart=e=>e.dataTransfer.setData("t",el.dataset.i);el.querySelector("select").onchange=e=>{LD[+el.dataset.i].s=+e.target.value;crm();toast("Stage updated")}});
+document.querySelectorAll(".col").forEach(c=>{c.ondragover=e=>{e.preventDefault();c.classList.add("ov")};c.ondragleave=()=>c.classList.remove("ov");c.ondrop=e=>{e.preventDefault();LD[+e.dataTransfer.getData("t")].s=+c.dataset.s;crm();toast("Moved to "+ST[+c.dataset.s])}})}
+function render(){({dash,inbox,flow,crm})[page]()}
+$("#col").onclick=()=>$("#sb").classList.toggle("c");
+$("#th").onclick=()=>{theme=(document.documentElement.dataset.theme=="dark")?"light":"dark";document.documentElement.dataset.theme=theme};
+$("#pres").onclick=()=>{const st=[["dash","Overview: a live command centre for WhatsApp operations"],["inbox","Inbox: Arabic enquiry, detected and answered with AI assist"],["inbox","Click ‘Extract lead to CRM’ to see structured fields populate"]];let i=0;(function n(){if(i>=st.length)return;go(st[i][0]);toast(st[i][1]);i++;setTimeout(n,3500)})()};
+const hideStart=()=>{$("#start").classList.add("out");setTimeout(()=>$("#start").remove(),600)};$("#go1").onclick=hideStart;$("#go2").onclick=()=>{hideStart();setTimeout(()=>$("#pres").click(),500)};
+side();render();
+</script></body></html>
